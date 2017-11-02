@@ -202,7 +202,8 @@ color observed: r
 ## maze_test_1.maz
 
 This one is a large maze and does not fit in this report. Ascii result is shown below for the last 
-step, however. **There might be some overflow on your screen!**
+step, however. **There might be some overflow on your screen if your markdown viewer 
+does not create a scrollable view for this table!**
 
 ```
 step 109:
@@ -227,7 +228,8 @@ color observed: y
 
 ### maze_test_0.maz
 
-Final probability distribution is shown below. **There might be some overflow on your screen!**
+Final probability distribution is shown below. **There might be some overflow on your screen if your markdown viewer 
+does not create a scrollable view for this table!**
 ```
 step 104:
 color observed: r
