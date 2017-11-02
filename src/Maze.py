@@ -58,7 +58,7 @@ class Maze:
 
 
 if __name__ == '__main__':
-    # some testing code
+    # some simple testing code
     maze = Maze('../input/maze_walls.maz')
     print(maze.matrix)
     print(maze.states)

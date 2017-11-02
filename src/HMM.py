@@ -40,12 +40,12 @@ class HMM:
         """
         Simulates a robot starting at a random location and moving for a number of steps. For
         each steps, simulates sensing a color (0.88 chance of sensing right one, 0.04 of sensing each of the wrong ones)
-        :return: list of color sensings
+        :return: list of colors sensed by the robot
         """
         min_steps = max(self.maze.width, self.maze.height) ** 2
         # max_steps = max(self.maze.width, self.maze.height) *
         max_steps = int(min_steps * 1.5)
-        # randint uses an inclusive range: 0..`count` - 1 adds to `count` states
+        # randint uses an inclusive range: there's `count` states in (0..`count` - 1)
         pos = self.maze.state_to_coord_dict[random.randint(0, self.maze.state_count - 1)]
         pos_list = [pos]
 
