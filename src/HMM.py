@@ -43,7 +43,6 @@ class HMM:
         :return: list of colors sensed by the robot
         """
         min_steps = max(self.maze.width, self.maze.height) ** 2
-        # max_steps = max(self.maze.width, self.maze.height) *
         max_steps = int(min_steps * 1.5)
         # randint uses an inclusive range: there's `count` states in (0..`count` - 1)
         pos = self.maze.state_to_coord_dict[random.randint(0, self.maze.state_count - 1)]

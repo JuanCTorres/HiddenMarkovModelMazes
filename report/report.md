@@ -202,7 +202,7 @@ color observed: r
 ## maze_test_1.maz
 
 This one is a large maze and does not fit in this report. Ascii result is shown below for the last 
-step, however.
+step, however. **There might be some overflow on your screen!**
 
 ```
 step 109:
@@ -227,7 +227,7 @@ color observed: y
 
 ### maze_test_0.maz
 
-Final probability distribution is shown below.
+Final probability distribution is shown below. **There might be some overflow on your screen!**
 ```
 step 104:
 color observed: r
@@ -307,12 +307,13 @@ color observed: g
 I noticed that the larger the maze, the larger the uncertainty for the actual location of the robot. When I generate the
 sequence of locations of the robot, I scale up the number of observations the robot makes depending on the size of the 
 maze so as to improve the results of the algorithm. I maintain some level of uncertainty by choosing at random the number
-of steps within that scaled range:
+of steps within that scaled range. In doing so, the model became much more certain (higher probability) of knowing where
+the robot was.
 
 ```python
 def _simulate_robot_sensings(self):
-    min_steps = max(self.maze.width, self.maze.height) * 2
-    max_steps = max(self.maze.width, self.maze.height) * 3
+    min_steps = max(self.maze.width, self.maze.height) ** 2
+    max_steps = int(min_steps * 1.5)
     ...
     total_steps = random.randint(min_steps, max_steps)  # number of steps should depend on how big the maze is
     ...
