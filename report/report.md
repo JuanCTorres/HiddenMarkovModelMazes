@@ -310,7 +310,7 @@ I noticed that the larger the maze, the larger the uncertainty for the actual lo
 sequence of locations of the robot, I scale up the number of observations the robot makes depending on the size of the 
 maze so as to improve the results of the algorithm. I maintain some level of uncertainty by choosing at random the number
 of steps within that scaled range. In doing so, the model became much more certain (higher probability) of knowing where
-the robot was.
+the robot was since, over a longer period, the model has more information to infer where the robot is.
 
 ```python
 def _simulate_robot_sensings(self):
