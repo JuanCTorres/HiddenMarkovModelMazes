@@ -1,3 +1,7 @@
+"""
+Author: Juan C. Torres
+Date: November, 2017
+"""
 import numpy as np
 
 

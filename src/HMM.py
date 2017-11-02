@@ -1,10 +1,11 @@
+"""
+Author: Juan C. Torres
+Date: November, 2017
+"""
 import random
-from enum import Enum
-
 import numpy as np
 from Maze import Maze
 from os import listdir
-from itertools import product
 
 
 class HMM:
@@ -27,7 +28,7 @@ class HMM:
         f_{1: t + 1} = alpha * O_{t + 1} * transpose(T) * f_{1 : t}. From Russell & Norvig, p. 579.
         :return:
         """
-        for i in range(1, len(self.sensor_inputs) + 1):  # step 0 is already done: a uniform disitribution
+        for i in range(1, len(self.sensor_inputs) + 1):  # step 0 is already done: a uniform distribution
             # sensor matrix dict contains the diagonal matrices O, one for every color.
             res = self.sensor_matrix_dict[self.sensor_inputs[i - 1]] @ np.transpose(self.transition_matrix) @ \
                   self.belief_list[i - 1]  # fyi, @ is an infix operator for matrix multiplication.
@@ -60,7 +61,7 @@ class HMM:
     def _simulate_sensor_reading(self, color):
         """
         Simulates one sensor reading for `color`: 0.88 chance of getting the right one;
-        otherwise unfiorm distribution between the wrong colors
+        otherwise uniform distribution between the wrong colors
         :param color: color to simulate the reading of
         :return: color sensed by the camera
         """
@@ -108,7 +109,7 @@ class HMM:
         possible_neighbors = [np.add([row, col], val) for val in Maze.DIRECTIONS.values()]
         for rr, cc in possible_neighbors:
             if self.maze.is_floor(rr, cc):
-                result.append(maze.states[rr][cc])
+                result.append(curr_maze.states[rr][cc])
         return result, self.MAX_NEIGHBOR_COUNT - len(result)
 
     def display_result(self, res):
@@ -122,7 +123,7 @@ class HMM:
         # 10-wide cells (+ 2 padding on each side for each),
         # 1 end-bar for each cell, 1 start bar for the leftmost cell
         cell_content_width = 10
-        str_width = (cell_content_width * self.maze.width) + (2 * maze.width) + (1 * self.maze.width) + 1
+        str_width = (cell_content_width * self.maze.width) + (2 * curr_maze.width) + (1 * self.maze.width) + 1
         print('Sensor inputs: %s ' % self.sensor_inputs)
         for i in range(len(res)):
             state = res[i]
@@ -174,9 +175,8 @@ if __name__ == '__main__':
     test = 1
     for file in listdir(input_dir):
         print('TEST %d:' % test)
-        maze = Maze('%s%s' % (input_dir, file))
-        # h = HMM(maze, ['r', 'b', 'b'])
-        h = HMM(maze)
+        curr_maze = Maze('%s%s' % (input_dir, file))
+        h = HMM(curr_maze)
         res = h.forward()
         h.display_result(res)
         test += 1
