@@ -10,5 +10,5 @@
 
 ## How to run testing code
 
-```cd src && python3 src``` (not `cd`ing into `src` results in the input files not being found. This can be solved by 
+```cd src && python3 HMM.py``` (not `cd`ing into `src` results in the input files not being found. This can be solved by 
 using an absolute path in testing. In the future, perhaps).
