@@ -108,7 +108,21 @@ The helper method `_get_neighbor_cells` is not particularly interesting: it chec
 
 ### Forward
 
-The forward filtering code is mostly straightforward. Note that I used the infix matrix multiplication operator `@`
+The forward filtering code is mostly straightforward and follows the formulation given in Russell & Norvig, p. 579, as 
+noted in the `problem` section before:
+
+```
+f{1: t + 1} = alpha * O_{t + 1} * tranpose(T) * f_{1 : t}
+```
+
+This can also be expressed as 
+
+```
+f{1: t} = alpha * O_{t} * tranpose(T) * f_{1 : t - 1},
+```
+which is a more convenient formulation to actually program this equation.
+
+Note that I used the infix matrix multiplication operator `@`
 introduced in python 3.5. For two matrices `A` and `B`, `A @ B` computes their matrix multiplication. Note that I loop 
 over `1 to len(sensor_inputs) + 1` because I generate `len(sensor_inputs) + 1` probability distributions: one for each 
 sensor input and one initial one to act as the base case of the recursion. The initial distribution is simply a uniform
